@@ -1,0 +1,126 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0e7t1eh8nmu8"]
+
+[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://Scene/Player/proto_controller.tscn" id="1_smvup"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i2tpv"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_lx3qj"]
+sky_material = SubResource("ProceduralSkyMaterial_i2tpv")
+
+[sub_resource type="Environment" id="Environment_g3gwa"]
+background_mode = 2
+sky = SubResource("Sky_lx3qj")
+sky_custom_fov = 100.6
+ambient_light_color = Color(0.714494, 0.54971963, 0.15321845, 1)
+tonemap_mode = 3
+tonemap_exposure = 0.65
+tonemap_white = 2.03
+glow_enabled = true
+fog_mode = 1
+fog_light_color = Color(1, 0.9270007, 0.64677703, 1)
+fog_light_energy = 0.14
+fog_sun_scatter = 0.06
+fog_density = 1.138
+volumetric_fog_density = 0.2581
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2tpv"]
+albedo_color = Color(0.65373766, 0.7575588, 0.14726898, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lx3qj"]
+albedo_color = Color(0.29721713, 0.17986077, 4.813075e-08, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_g3gwa")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301275, 0.25000006, 0.49240395, -0.6517817, 0.57681805, -0.08682411, 0.62264, 0.77767664, 20.4, 8, 4720.6)
+shadow_enabled = true
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1999979, 0, 18.45)
+use_collision = true
+size = Vector3(80, 1, 89.1)
+material = SubResource("StandardMaterial3D_i2tpv")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.3, 1.6, -1.05)
+use_collision = true
+size = Vector3(0.3, 2.2, 15.2)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.3500011, 3.0000002, 6.3999996)
+use_collision = true
+size = Vector3(0.3, 6.4, 18.2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6, 1.6, -1.2000008)
+use_collision = true
+size = Vector3(0.3, 2.2, 14.900001)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.1, 2.5, 6.425)
+operation = 2
+radius = 2.0
+height = 0.743
+sides = 16
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.200001, 6.7, 8.85)
+size = Vector3(0.6, 1, 4.7000003)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4, 6.7, 8.85)
+size = Vector3(0.6, 1, 4.7000003)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.3499992, 6.7, 10.950001)
+size = Vector3(0.6, 1, 20.4)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0999997, 5.7, 8.85)
+size = Vector3(21.2, 1, 4.7000003)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1.8700001, 0, 0, 0, 0.54559594, 0.89141023, 0, -0.315, 1.5439676, 9.753924, 1.8897886, -0.35306913)
+size = Vector3(1, 1, 9.1)
+
+[node name="ProtoController" parent="." instance=ExtResource("1_smvup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3000001, 1.4, -4.9)
+base_speed = 2.0
+jump_velocity = 3.5
+sprint_speed = 5.0
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1999999, 0)
+radius = 0.3
+height = 2.2
+sides = 16
+material = SubResource("StandardMaterial3D_lx3qj")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6000001, 0)
+radius = 0.671
+height = 2.2
+sides = 16
+cone = true
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2000003, 0)
+radius = 0.671
+height = 2.2
+sides = 16
+cone = true
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7000003, 0)
+radius = 0.671
+height = 2.2
+sides = 16
+cone = true
